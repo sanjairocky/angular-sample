@@ -1,0 +1,32 @@
+<br/>
+Filter by:<br/>
+<input type="textbox" id="filter" [(ngModel)]="nameFilter"/>
+<br>
+<br>
+<label>Total Number of Employees: <label id='count'>{{emp?emp.length:''}}</label></label>
+<br>
+<br>
+<table border="1">
+    <thead>
+      <tr>
+        <th>Emp ID</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let employee of emp | employeenamefilter: nameFilter; let i = index'>
+        <td><a routerLink="../details/{{employee.id}}">{{employee.id}}</a></td>
+        <td id="name{{i}}">{{employee.name | uppercase}}</td>
+          <td id="loc{{i}}">{{employee.location}}</td>
+          <td id="email{{i}}">{{employee.email}}</td>
+          <td id="mob{{i}}">{{employee.mobile}}</td>
+          <td><button type="button"><a routerLink = "../editEmployee/{{employee.id}}">Edit{{employee.id}}</a></button></td>
+          <td><button type="button"><a routerLink = "../deleteEmployee/{{employee.id}}">Delete{{employee.id}}</a></button></td>
+      </tr>
+    </tbody>
+  </table>
